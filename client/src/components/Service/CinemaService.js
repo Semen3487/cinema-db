@@ -1,10 +1,10 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import MovieForm from '../components/Movies/MovieForm';
-import DirectorForm from '../components/Directors/DirectorForm';
-import ActorForm from '../components/Actors/ActorForm';
-import StudioForm from '../components/Studios/StudioForm';
+import MovieForm from '../Movies/MovieForm';
+import DirectorForm from '../Directors/DirectorForm';
+import ActorForm from '../Actors/ActorForm';
+import StudioForm from '../Studios/StudioForm';
 
 
 function CinemaService() {

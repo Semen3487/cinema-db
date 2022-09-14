@@ -31,7 +31,7 @@ function MovieForm() {
 
   const onMovieSubmit = (values, actions) => {
     !values.id
-      ? dispatch(createMovieAction({...values, id: Date.now()}))
+      ? dispatch(createMovieAction(values))
       : dispatch(updateMovieAction(values));
       goBackTo();
   };

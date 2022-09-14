@@ -1,4 +1,5 @@
 const Router = require('express');
+// const movieController = require('../controllers/movieController');
 
 const { 
   getAllMovies, 
@@ -7,6 +8,7 @@ const {
   updateMovie,
   deleteMovie
 } = require('../controllers/movieController');
+
 
 
 const router = new Router();

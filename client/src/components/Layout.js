@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import { Link, Outlet } from 'react-router-dom';
 
 import AppHeader from './Header/AppHeader';
-import CinemaService from '../Service/CinemaService';
+import CinemaService from './Service/CinemaService';
 import AppFooter from './Footer/AppFooter';
 
 
