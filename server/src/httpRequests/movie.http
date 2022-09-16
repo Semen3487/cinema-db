@@ -8,16 +8,20 @@ content-type: application/json
     "studio_id": 2
 }
 
-# PUT https://localhost:5000/api/movies HTTP/1.1
-# content-type: application/json
+###
 
-# {
-#     "title": "sample",
-#     "release_year": 1991,
-#     "genre": 2,
-#     "studio_id": 2,
-#     "movies_id": 2
-# }
+PUT https://localhost:5000/api/movies HTTP/1.1
+content-type: application/json
 
-# DELETE https://localhost:5000/api/movies/1 HTTP/1.1
-# content-type: application/json
+{
+    "title": "sample",
+    "release_year": 1991,
+    "genre": 2,
+    "studio_id": 2,
+    "movies_id": 2
+}
+
+###
+
+DELETE https://localhost:5000/api/movies/1 HTTP/1.1
+content-type: application/json
