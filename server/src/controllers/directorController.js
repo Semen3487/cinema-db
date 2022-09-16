@@ -2,70 +2,70 @@ const db = require('../db');
 
 class DirectorController {
 
-  async getAllMovies(req, res){
+  async getAllDirectors(req, res){
     try {
-      const movies = await db.query(`SELECT * FROM movies`);
-      res.json(movies.rows);
+      const directors = await db.query(`SELECT * FROM directors`);
+      res.json(directors.rows);
     } catch (error) {
       console.log(error);
     };   
   };
 
-  async getOneMovie(req, res){
+  async getOneDirector(req, res){
     try {
       const id = req.params.id;
-      const oneMovie = await db.query(
-          `SELECT * FROM movies WHERE movie_id=$1`, 
+      const oneDirector = await db.query(
+          `SELECT * FROM directors WHERE director_id=$1`, 
           [id]
         );
-      res.json(oneMovie.rows[0]);
+      res.json(oneDirector.rows[0]);
     } catch (error) {
       console.log(error);
     }; 
   };
 
-  async createMovie(req, res){
+  async createDirector(req, res){
     try {
-      const {title, release_year, genre, studio_id} = req.body;
-      const newMovie = await db.query(
-        `INSERT INTO movies
-        (title, release_year, genre, studio_id)
-        VALUES ($1, $2, $3, $4)
+      const {full_name, country_id, birth_date, age, photo} = req.body;
+      const newDirector = await db.query(
+        `INSERT INTO directors
+        (full_name, country_id, birth_date, age, photo)
+        VALUES ($1, $2, $3, $4, $5)
         RETURNING *`, 
-        [title, release_year, genre, studio_id]
+        [full_name, country_id, birth_date, age, photo]
       );
-      res.json(newMovie.rows[0]);
+      res.json(newDirector.rows[0]);
     } catch (error) {
       console.log(error);
     };
   };
   
-  async updateMovie(req, res){
+  async updateDirector(req, res){
     try {
-      const {title, release_year, genre, studio_id, movie_id} = req.body;
-      const updateMovie = await db.query(
-        `UPDATE movies 
-        SET title = $1, release_year = $2,
-            genre = $3, studio_id = $4
-        WHERE movie_id = $5
+      const {full_name, country_id, birth_date, age, photo, director_id} = req.body;
+      const updateDirector = await db.query(
+        `UPDATE directors 
+        SET full_name = $1, country_id = $2, birth_date = $3, 
+            age = $4, photo = $5
+        WHERE director_id = $6
         RETURNING *`,
-        [title, release_year, genre, studio_id, movie_id]
+        [full_name, country_id, birth_date, age, photo, director_id]
       );
-      res.json(updateMovie.rows[0]);
+      res.json(updateDirector.rows[0]);
     } catch (error) {
       console.log(error);
     };
   };
 
-  async deleteMovie(req, res){
+  async deleteDirector(req, res){
     try {
       const id = req.params.id;
-      const deleteMovie = await db.query(
-        `DELETE FROM movies WHERE movie_id = $1
+      const deleteDirector = await db.query(
+        `DELETE FROM directors WHERE director_id = $1
         RETURNING *`,
         [id]
       );
-      res.json(deleteMovie.rows[0]);
+      res.json(deleteDirector.rows[0]);
     } catch (error) {
       console.log(error);
     };

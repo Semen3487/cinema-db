@@ -1,5 +1,5 @@
 import React from 'react';
-import { ErrorMessage, Field, FieldArray, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import Stack from '@mui/material/Stack/Stack';
@@ -27,13 +27,13 @@ function ActorForm() {
 
   const onActorSubmit = (values, actions) => {
     !values.id
-      ? dispatch(createActorAction({...values, id: Date.now()}))
+      ? dispatch(createActorAction(values))
       : dispatch(updateActorAction(values));
       goBackTo();
   };
 
   const schema = Yup.object().shape({
-    fullName: Yup.string().required('Field Full Name is required')
+    full_name: Yup.string().required('Field is required')
   });
 
      
@@ -42,21 +42,25 @@ function ActorForm() {
       <Form className='form-inner'>
         <Stack>
           <fieldset className='form-item'>
-            <legend>Full Name</legend>
-              <Field name='fullName'/>
-            <ErrorMessage name='fullName' >
+            <legend>Actor Name</legend>
+              <Field name='full_name'/>
+            <ErrorMessage name='full_name' >
                 {(msg) => <div className='error' >{msg}</div>}
             </ErrorMessage>
           </fieldset>
           <fieldset className='form-item'>
-            <legend>Birth Year</legend>
-            <Field name='birthYear' />
+            <legend>Country</legend>
+            <Field name='country' />
           </fieldset>
           <fieldset className='form-item'>
-            <legend>Nationality</legend>
-            <Field name='nationality' />
+            <legend>Date of birth</legend>
+            <Field name='birth_date' />
           </fieldset>
           <fieldset className='form-item'>
+            <legend>Age</legend>
+            <Field name='age' />
+          </fieldset>
+          {/* <fieldset className='form-item'>
             <legend>Movies</legend>
             <FieldArray name='movies' >
               {({push, remove, form: {values: {movies}}}) => {
@@ -84,7 +88,7 @@ function ActorForm() {
                 )
               } }
             </FieldArray>
-          </fieldset>
+          </fieldset> */}
           <fieldset className='form-item'>
             <legend>Photo</legend>
             <Field name='image' as='textarea' className='form-area'/>

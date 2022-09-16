@@ -26,13 +26,19 @@ class MovieController {
 
   async createMovie(req, res){
     try {
-      const {title, release_year, genre, studio_id} = req.body;
+      const {title, release_year, genre_id, country_id, studio_id, director_id, actor_id, poster} = req.body;
       const newMovie = await db.query(
         `INSERT INTO movies
-        (title, release_year, genre, studio_id)
-        VALUES ($1, $2, $3, $4)
+        (title, release_year, genre_id, country_id, studio_id, director_id, actor_id, poster)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
         RETURNING *`, 
-        [title, release_year, genre, studio_id]
+        [title, release_year, genre_id, country_id, studio_id, director_id, actor_id, poster]
+
+        // `INSERT INTO movies
+        // (title, release_year, genre_id, country_id, studio_id, director_id, actor_id, poster)
+        // VALUES ($1, $2, (SELECT id FROM genre WHERE title = $3), $4, $5, $6, $7, $8)
+        // RETURNING *`, 
+        // [title, release_year, genre_id, country_id, studio_id, director_id, actor_id, poster]
       );
       res.json(newMovie.rows[0]);
     } catch (error) {
@@ -42,14 +48,14 @@ class MovieController {
   
   async updateMovie(req, res){
     try {
-      const {title, release_year, genre, studio_id, movie_id} = req.body;
+      const {title, release_year, genre_id, country_id, studio_id, director_id, actor_id, poster, movie_id} = req.body;
       const updateMovie = await db.query(
         `UPDATE movies 
-        SET title = $1, release_year = $2,
-            genre = $3, studio_id = $4
-        WHERE movie_id = $5
+        SET title = $1, release_year = $2, genre_id = $3 country_id = $4, studio_id = $5, 
+            director_id = $6, actor_id = $7, poster = $8
+        WHERE movie_id = $9
         RETURNING *`,
-        [title, release_year, genre, studio_id, movie_id]
+        [title, release_year, genre_id, country_id, studio_id, director_id, actor_id, poster, movie_id]
       );
       res.json(updateMovie.rows[0]);
     } catch (error) {

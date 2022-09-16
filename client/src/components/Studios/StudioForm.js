@@ -25,13 +25,13 @@ function StudioForm() {
 
   const onStudioSubmit = (values, actions) => {
     !values.id
-      ? dispatch(createStudioAction({...values, id: Date.now()}))
+      ? dispatch(createStudioAction(values))
       : dispatch(updateStudioAction(values));
       goBackTo();
   };
 
   const schema = Yup.object().shape({
-    title: Yup.string().required('Field Title is required')
+    title: Yup.string().required('Field is required')
   });
 
   const renderFormik = (props) => {
@@ -39,23 +39,40 @@ function StudioForm() {
       <Form className='form-inner'>
         <Stack>
           <fieldset className='form-item'>
-            <legend>Title</legend>
+            <legend>Studio Title</legend>
             <Field name='title'/>
             <ErrorMessage name='title' >
                 {(msg) => <div className='error' >{msg}</div>}
             </ErrorMessage>
           </fieldset>
           <fieldset className='form-item'>
-            <legend>Location</legend>
-            <Field name='location' />
+            <legend>Year of foundation</legend>
+            <Field name='foundation_year' />
           </fieldset>
+          {/* <fieldset className='form-item'>
+            <legend>Country</legend>
+            <Field name='country' as='select' >
+              <option value={initStudio.values.country}>
+                {initStudio.values.country}
+              </option>
+              {countries.map((country, index) => (
+                <option key={index} value={country} >
+                  {country}
+                </option>
+              ))}
+            </Field>
+          </fieldset> */}
           <fieldset className='form-item'>
-            <legend>Foundation Year</legend>
-            <Field name='foundationYear' />
+            <legend>Country</legend>
+            <Field name='country' />
           </fieldset>
           <fieldset className='form-item'>
             <legend>Logo</legend>
             <Field name='logo' as='textarea' className='form-area'/>
+          </fieldset>
+          <fieldset className='form-item'>
+            <legend>Site</legend>
+            <Field name='web_site' as='textarea' className='form-area'/>
           </fieldset>
           <Stack direction='row' spacing={2} justifyContent='center' className='form-button'>
             <Button type='submit' variant='contained' size='medium'

@@ -26,13 +26,13 @@ class ActorController {
 
   async createActor(req, res){
     try {
-      const {full_name, nationality_id, birth_year, age} = req.body;
+      const {full_name, country_id, birth_date, age, photo} = req.body;
       const newActor = await db.query(
         `INSERT INTO actors
-        (full_name, nationality_id, birth_year, age)
-        VALUES ($1, $2, $3, $4)
+        (full_name, country_id, birth_date, age, photo)
+        VALUES ($1, $2, $3, $4, $5)
         RETURNING *`, 
-        [full_name, nationality_id, birth_year, age]
+        [full_name, country_id, birth_date, age, photo]
       );
       res.json(newActor.rows[0]);
     } catch (error) {
@@ -42,14 +42,14 @@ class ActorController {
   
   async updateActor(req, res){
     try {
-      const {full_name, nationality_id, birth_year, age, actor_id} = req.body;
+      const {full_name, country_id, birth_date, age, photo, actor_id} = req.body;
       const updateActor = await db.query(
-        `UPDATE movies 
-        SET full_name = $1, nationality_id = $2,
-        birth_year = $3, age = $4
-        WHERE actor_id = $5
+        `UPDATE actors 
+        SET full_name = $1, country_id = $2, birth_date = $3, 
+            age = $4, photo = $5
+        WHERE actor_id = $6
         RETURNING *`,
-        [full_name, nationality_id, birth_year, age, actor_id]
+        [full_name, country_id, birth_date, age, photo, actor_id]
       );
       res.json(updateActor.rows[0]);
     } catch (error) {

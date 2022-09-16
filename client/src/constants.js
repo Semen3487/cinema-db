@@ -2,31 +2,43 @@ export const BASE_URL = 'http://localhost:5000/api';
 
 export const initMovie = {
   title: '',
-  directors: [''],
-  actors: [''],
-  studios: [''],
+  release_year: '',
+  genre: '',
+  country: '',
+  studio: '',
+  director: '',
+  actor: '',
   poster: '',
 };
 
 export const initActor = {
-  movies: [''],
-  fullName: '',
-  birthYear: '',
-  nationality: '',
-  image: '',
+  full_name: '',
+  country: '',
+  birth_date: '',
+  age: '',
+  // movies: [''],
+  photo: '',
 };
 
 export const initDirector = {
-  movies: [''],
-  fullName: '',
-  birthYear: '',
-  nationality: '',
-  image: '',
+  full_name: '',
+  country: '',
+  birth_date: '',
+  age: '',
+  // movies: [''],
+  photo: '',
 };
 
 export const initStudio = {
   title: '',
-  location: '',
-  foundationYear: '',
+  foundation_year: '',
+  country: '',
   logo: '',
+  web_site: '',
 };
+
+// export const countries = [
+//   'United States',
+//   'Canada',
+//   'Ukraine'
+// ];

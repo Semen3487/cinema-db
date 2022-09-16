@@ -1,5 +1,5 @@
 import React from 'react';
-import { ErrorMessage, Field, FieldArray, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import Stack from '@mui/material/Stack/Stack';
@@ -37,109 +37,40 @@ function MovieForm() {
   };
 
   const schema = Yup.object().shape({
-    title: Yup.string().required('Title is required')
+    title: Yup.string().required('Field is required')
   });
 
   const renderFormik = (props) => {
     return (
       <Form className='form-inner'>
         <Stack>
-        <fieldset className='form-item'>
-          <legend>Title</legend>
-            <Field name='title'/>
-          <ErrorMessage name='title' >
-              {(msg) => <div className='error' >{msg}</div>}
-          </ErrorMessage>
+          <fieldset className='form-item'>
+            <legend>Movie Title</legend>
+              <Field name='title'/>
+            <ErrorMessage name='title' >
+                {(msg) => <div className='error' >{msg}</div>}
+            </ErrorMessage>
           </fieldset>
           <fieldset className='form-item'>
-            <legend>Actors</legend>
-            <FieldArray name='actors' >
-              {({push, remove, form: {values: {actors}}}) => {
-                return (
-                  <Stack spacing={2}>
-                    {actors.map((actor, index) => (
-                      <Stack key={index}
-                             direction='row'
-                             spacing={2} >
-                        <Field name={`actors[${index}]`} />
-                        <Stack key={index} direction='row'>
-                          {index > 0 && (
-                          <button type='button' className='input-button'
-                                  onClick={() => remove(index)} >
-                                    -
-                          </button>
-                        )}
-                        <button type='button' className='input-button'
-                                onClick={() => push('')}>
-                                  +
-                        </button>
-                        </Stack>
-                        
-                      </Stack>
-                    ))}
-                  </Stack>
-                )
-              }}
-            </FieldArray>
+            <legend>Year</legend>
+              <Field name='release_year'/>
+            <legend>Genre</legend>
+              <Field name='genre'/>
           </fieldset>
           <fieldset className='form-item'>
-            <legend>Directors</legend>
-            <FieldArray name='directors'>
-              {({push, remove, form: {values: {directors}}}) => {
-                return (
-                  <Stack spacing={2}>
-                    {directors.map((director, index) =>(
-                      <Stack key={index} direction='row' spacing={2}>
-                        <Field name={`directors[${index}]`} />
-                        <Stack key={index} direction='row'>
-                          {index > 0 && (
-                          <button type='button' className='input-button'
-                                  onClick={() => remove(index)} >
-                                    -
-                          </button>
-                        )}
-                        <button type='button' className='input-button'
-                                onClick={() => push('')}>
-                                  +
-                        </button>
-                        </Stack>
-                      </Stack>
-                    ))}
-                  </Stack>
-                )
-              }}
-            </FieldArray>
+            <legend>Country</legend>
+            <Field name='country'/>
+            <legend>Studio</legend>
+              <Field name='studio'/>
           </fieldset>
           <fieldset className='form-item'>
-            <legend>Studios</legend>
-            <FieldArray name='studios'>
-              {({push, remove, form: {values: {studios}}}) => {
-                return (
-                  <Stack spacing={2}>
-                    {studios.map((studio, index) =>(
-                      <Stack key={index} direction='row' spacing={2}>
-                        <Field name={`studios[${index}]`} />
-                        <Stack key={index} direction='row'>
-                          {index > 0 && (
-                          <button type='button' className='input-button'
-                                  onClick={() => remove(index)} >
-                                    -
-                          </button>
-                        )}
-                        <button type='button' className='input-button'
-                                onClick={() => push('')}>
-                                  +
-                        </button>
-                        </Stack>
-                      </Stack>
-                    ))}
-                  </Stack>
-                )
-              }}
-            </FieldArray>
+            <legend>Director</legend>
+              <Field name='director'/>
+            <legend>Actor</legend>
+              <Field name='actor'/>
           </fieldset>
           <fieldset className='form-item'>
-            <legend>Photo</legend>
+            <legend>Poster</legend>
             <Field name='poster' as='textarea' className='form-area'/>
           </fieldset>
           <Stack direction='row' spacing={2} justifyContent='center' className='form-button'>
@@ -175,3 +106,5 @@ function MovieForm() {
 }
 
 export default MovieForm;
+
+

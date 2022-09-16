@@ -2,70 +2,70 @@ const db = require('../db');
 
 class StudioController {
 
-  async getAllMovies(req, res){
+  async getAllStudios(req, res){
     try {
-      const movies = await db.query(`SELECT * FROM movies`);
-      res.json(movies.rows);
+      const studios = await db.query(`SELECT * FROM studios`);
+      res.json(studios.rows);
     } catch (error) {
       console.log(error);
     };   
   };
 
-  async getOneMovie(req, res){
+  async getOneStudio(req, res){
     try {
       const id = req.params.id;
-      const oneMovie = await db.query(
-          `SELECT * FROM movies WHERE movie_id=$1`, 
+      const oneStudio = await db.query(
+          `SELECT * FROM studios WHERE studio_id=$1`, 
           [id]
         );
-      res.json(oneMovie.rows[0]);
+      res.json(oneStudio.rows[0]);
     } catch (error) {
       console.log(error);
     }; 
   };
 
-  async createMovie(req, res){
+  async createStudio(req, res){
     try {
-      const {title, release_year, genre, studio_id} = req.body;
-      const newMovie = await db.query(
-        `INSERT INTO movies
-        (title, release_year, genre, studio_id)
-        VALUES ($1, $2, $3, $4)
+      const {title, foundation_year, country_id, logo, web_site} = req.body;
+      const newStudio = await db.query(
+        `INSERT INTO studios
+        (title, foundation_year, country_id, logo, web_site)
+        VALUES ($1, $2, $3, $4, $5)
         RETURNING *`, 
-        [title, release_year, genre, studio_id]
+        [title, foundation_year, country_id, logo, web_site]
       );
-      res.json(newMovie.rows[0]);
+      res.json(newStudio.rows[0]);
     } catch (error) {
       console.log(error);
     };
   };
   
-  async updateMovie(req, res){
+  async updateStudio(req, res){
     try {
-      const {title, release_year, genre, studio_id, movie_id} = req.body;
-      const updateMovie = await db.query(
-        `UPDATE movies 
-        SET title = $1, release_year = $2,
-            genre = $3, studio_id = $4
-        WHERE movie_id = $5
+      const {title, foundation_year, country_id, logo, web_site, studio_id} = req.body;
+      const updateStudio = await db.query(
+        `UPDATE studios 
+        SET title = $1, foundation_year = $2, country_id = $3, 
+            logo = $4, web_site = $5
+        WHERE studio_id = $6
         RETURNING *`,
-        [title, release_year, genre, studio_id, movie_id]
+        [title, foundation_year, country_id, logo, web_site, studio_id]
       );
-      res.json(updateMovie.rows[0]);
+      res.json(updateStudio.rows[0]);
     } catch (error) {
       console.log(error);
     };
   };
 
-  async deleteMovie(req, res){
+  async deleteStudio(req, res){
     try {
       const id = req.params.id;
-      const deleteMovie = await db.query(
-        `DELETE FROM movies WHERE movie_id = $1
+      const deleteStudio = await db.query(
+        `DELETE FROM studios WHERE studio_id = $1
         RETURNING *`,
         [id]
       );
-      res.json(deleteMovie.rows[0]);
+      res.json(deleteStudio.rows[0]);
     } catch (error) {
       console.log(error);
     };
