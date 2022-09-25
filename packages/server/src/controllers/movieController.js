@@ -1,4 +1,4 @@
-const db = require('../db');
+const db = require('../dddb');
 
 class MovieController {
 
@@ -73,7 +73,7 @@ class MovieController {
       );
       res.json(deleteMovie.rows[0]);
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     };
   };
 
