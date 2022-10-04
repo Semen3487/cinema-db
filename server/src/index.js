@@ -2,7 +2,9 @@ const express = require('express');
 const path = require('path');
 require('dotenv').config();
 const cors = require('cors');
+const {Op} = require('sequelize');
 
+const db = require('./db/models');
 const movieRouters = require('./routers/movieRouters');
 const actorRouters = require('./routers/actorRouters');
 const directorRouters = require('./routers/directorRouters');
@@ -21,6 +23,28 @@ app.use('/api', directorRouters);
 app.use('/api', studioRouters);
 
 app.listen(PORT, () => console.log(`Listen on port:${PORT}`));
+
+
+
+
+(async function () {
+	try {
+		await db.sequelize.authenticate();
+		console.log('Connection has been established successively');
+	} catch (error) {
+		console.error('Unable to connect to the database:', error.message);
+	}
+	
+})();
+
+
+
+
+
+
+
+
+
 
 
 
