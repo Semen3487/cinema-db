@@ -33,7 +33,20 @@ app.listen(PORT, () => console.log(`Listen on port:${PORT}`));
 		console.log('Connection has been established successively');
 	} catch (error) {
 		console.error('Unable to connect to the database:', error.message);
-	}
+	};
+
+	//* validation
+	// try {
+	// 	const studio = await db.Studio.create({
+	// 		title: 'Project',
+	// 		web_site: 'pppp@trmrotk.com'
+	// 	}, 
+			//{validate: false}
+	//	);
+	// 	console.log(JSON.stringify(studio, null, 2));
+	// } catch (error) {
+	// 	console.log('Something went wrong', error.message);
+	// }
 	
 })();
 
@@ -81,3 +94,22 @@ app.listen(PORT, () => console.log(`Listen on port:${PORT}`));
 // const __dirname = path.resolve();
 
 // "type": "module"
+
+// console.log(JSON.stringify(genres, null, 2));
+
+// const users = await db.User.findAll({
+// 	raw: true,
+// 	attributes: {
+// 		include: [
+// 			[
+// 				db.sequelize.literal(`EXTRACT(year FROM age(birthday))`),
+// 				'year_old'
+// 			]
+// 		]
+// 	},
+// 	group: ['year_old', 'id'],
+// 	where: {yearOld: {[Op.lt]: 28}},
+// 	attributes: {exclude: ['createdAt']},
+// 	limit: 3
+// });
+

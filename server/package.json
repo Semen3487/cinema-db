@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "mig": "npx sequelize-cli db:migrate",
+    "migun": "npx sequelize-cli db:migrate:undo",
+    "miguna": "npx sequelize-cli db:migrate:undo:all",
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
   },

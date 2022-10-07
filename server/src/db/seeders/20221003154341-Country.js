@@ -5,9 +5,9 @@
 const countries = [];
 for(let i = 0; i < 10; i++){
   countries.push({
-    title: `Country ${i}`,
-    createdAt: new Date(),
-    updatedAt: new Date()
+    title: `Country ${i}`
+    // createdAt: new Date(),
+    // updatedAt: new Date()
   })
 }
 module.exports = {
