@@ -20,8 +20,8 @@ module.exports = {
       birth_date: {
         type: Sequelize.DATEONLY
       },
-      age: {
-        type: Sequelize.INTEGER
+      death_date: {
+        type: Sequelize.DATEONLY
       },
       photo: {
         type: Sequelize.TEXT

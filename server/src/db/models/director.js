@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     country_id: DataTypes.INTEGER,
     birth_date: DataTypes.DATEONLY,
-    age: DataTypes.INTEGER,
+    death_date: DataTypes.DATEONLY,
     photo: DataTypes.TEXT
   }, {
     sequelize,
