@@ -36,17 +36,17 @@ app.listen(PORT, () => console.log(`Listen on port:${PORT}`));
 	};
 
 	//* validation
-	try {
-		const studio = await db.Studio.create({
-			title: 'Project',
-			web_site: 'pppp@trmrotk.com'
-		}, 
-			{validate: false}
-		);
-		console.log(JSON.stringify(studio, null, 2));
-	} catch (error) {
-		console.log('Something went wrong', error.message);
-	}
+	// try {
+	// 	const studio = await db.Studio.create({
+	// 		title: 'Project',
+	// 		web_site: 'pppp@trmrotk.com'
+	// 	}, 
+	// 		{validate: false}
+	// 	);
+	// 	console.log(JSON.stringify(studio, null, 2));
+	// } catch (error) {
+	// 	console.log('Something went wrong', error.message);
+	// }
 	
 })();
 
