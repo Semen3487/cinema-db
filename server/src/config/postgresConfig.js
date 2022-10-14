@@ -7,7 +7,12 @@ module.exports = {
     database: process.env.DB_NAME,
     host: process.env.DB_HOST,
     dialect: "postgres",
-    migrationStorage: "json"
+    migrationStorage: "json",
+    define:
+    {
+      // timestamps: false,
+      underscored: true
+    }
   },
   test: {},
   production: {}

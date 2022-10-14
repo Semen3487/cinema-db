@@ -35,6 +35,31 @@ app.listen(PORT, () => console.log(`Listen on port:${PORT}`));
 		console.error('Unable to connect to the database:', error.message);
 	};
 
+	// try {
+	// 	await db.sequelize.drop({cascade:true});
+	// } catch (error) {
+	// 	console.log('Something went wrong:', error.message);
+	// };
+
+	try {
+		await db.sequelize.sync({alter:true});
+	} catch (error) {
+		console.log('Something went wrong:', error.message);
+	};
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
 	//* validation
 	// try {
 	// 	const studio = await db.Studio.create({

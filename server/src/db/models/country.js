@@ -10,7 +10,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Country.hasMany(models.Studio);
+      Country.hasMany(models.Actor);
+      Country.hasMany(models.Director);
+      Country.hasMany(models.Movie);
     }
   }
   Country.init({
@@ -24,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Country',
+    tableName: 'Countries',
   });
   return Country;
 };

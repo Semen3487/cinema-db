@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Studio.belongsTo(models.Country);
+      Studio.hasMany(models.Movie);
     }
   }
   Studio.init({
@@ -31,6 +32,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Studio',
+    tableName: 'Studios',
   });
   return Studio;
 };
