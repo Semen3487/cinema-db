@@ -35,6 +35,18 @@ app.listen(PORT, () => console.log(`Listen on port:${PORT}`));
 		console.error('Unable to connect to the database:', error.message);
 	};
 
+	
+
+	// try {
+	// 	const fantasy = await db.Genre.findOne({where: {
+	// 	title: ['Fantasy']
+	// }});
+	// console.log(JSON.stringify(fantasy, null, 2));
+	// console.log(await fantasy.getMovies({raw: true}));
+	// } catch (error) {
+	// 	console.log('Something went wrong:', error.message);
+	// };
+
 	// try {
 	// 	await db.sequelize.drop({cascade:true});
 	// } catch (error) {

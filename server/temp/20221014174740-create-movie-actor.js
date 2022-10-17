@@ -11,11 +11,11 @@ module.exports = {
       },
       movie_id: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       actor_id: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,

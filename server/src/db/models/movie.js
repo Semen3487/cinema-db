@@ -23,11 +23,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     release_date: DataTypes.DATEONLY,
-    genre_id: DataTypes.INTEGER,
     country_id: DataTypes.INTEGER,
     studio_id: DataTypes.INTEGER,
-    director_id: DataTypes.INTEGER,
-    actor_id: DataTypes.INTEGER,
     poster: DataTypes.TEXT
   }, {
     sequelize,

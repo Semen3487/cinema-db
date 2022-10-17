@@ -16,19 +16,10 @@ module.exports = {
       release_date: {
         type: Sequelize.DATEONLY
       },
-      genre_id: {
-        type: Sequelize.INTEGER
-      },
       country_id: {
         type: Sequelize.INTEGER
       },
       studio_id: {
-        type: Sequelize.INTEGER
-      },
-      director_id: {
-        type: Sequelize.INTEGER
-      },
-      actor_id: {
         type: Sequelize.INTEGER
       },
       poster: {
