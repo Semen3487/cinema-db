@@ -25,18 +25,39 @@ app.use('/api', studioRouters);
 app.listen(PORT, () => console.log(`Listen on port:${PORT}`));
 
 
-
-
-(async function () {
+const checkDB = async () => {
 	try {
 		await db.sequelize.authenticate();
 		console.log('Connection has been established successively');
 	} catch (error) {
 		console.error('Unable to connect to the database:', error.message);
 	};
+};
+
+checkDB();
+
+
+
+
+
+
+
+
+
+
+
+
+//* iife
+// (async function () {
+	// try {
+	// 	await db.sequelize.authenticate();
+	// 	console.log('Connection has been established successively');
+	// } catch (error) {
+	// 	console.error('Unable to connect to the database:', error.message);
+	// };
 
 	
-
+//* magic method
 	// try {
 	// 	const fantasy = await db.Genre.findOne({where: {
 	// 	title: ['Fantasy']
@@ -46,31 +67,69 @@ app.listen(PORT, () => console.log(`Listen on port:${PORT}`));
 	// } catch (error) {
 	// 	console.log('Something went wrong:', error.message);
 	// };
-
+//* drop tables
 	// try {
 	// 	await db.sequelize.drop({cascade:true});
 	// } catch (error) {
 	// 	console.log('Something went wrong:', error.message);
 	// };
+//* create tables
+	// try {
+	// 	await db.sequelize.sync({alter:true});
+	// } catch (error) {
+	// 	console.log('Something went wrong:', error.message);
+	// };
 
-	try {
-		await db.sequelize.sync({alter:true});
-	} catch (error) {
-		console.log('Something went wrong:', error.message);
-	};
 
+
+
+
+
+//*join one to many
+	// const userGenre = 'Drama';
+	// try {
+		// const someGenre = await db.Genre.findOne({
+		// 	where: {
+		// 		title: userGenre,
+		// 	}
+		// });
+		// // console.log('Genre', someGenre);
+		// const setBooks = await db.Books.findAll({
+		// 	where: {
+		// 		title:
+		// 	}
+		// })
+		// const movies = await db.Movie.findAll({
+		// 	attributes: ['title'],
+		// 	include: [
+				// {
+				// 	model: db.Genre,
+				// 	attributes: ['title'],
+				// 	required: true,
+				// 	// include: [
+				// 	// 	{
+				// 	// 		model: db.Movie_Genre,
+				// 	// 		attributes: ['title'],
+				// 	// 		where: {
+				// 	// 			genre_id: [4]
+				// 	// 		}
+				// 	// 	}
+				// 	// ]
+					
+				// },
+				// {
+				// 	model: db.Country,
+				// 	attributes: ['title'],
+				// 	required: true,
+				// }
+			// ],
+			
+		// });
+		// console.log(JSON.stringify(movies, null, 2));
+	// } catch (error) {
+	// 	console.log('Something went wrong:', error.message);
+	// };
 	
-	
-
-
-
-
-
-
-
-
-
-
 
 	//* validation
 	// try {
@@ -85,7 +144,7 @@ app.listen(PORT, () => console.log(`Listen on port:${PORT}`));
 	// 	console.log('Something went wrong', error.message);
 	// }
 	
-})();
+// })();
 
 
 

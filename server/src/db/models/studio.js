@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Studio.belongsTo(models.Country);
-      Studio.hasMany(models.Movie);
+      Studio.hasMany(models.Movie, {foreignKey: 'studio_id'});
     }
   }
   Studio.init({
