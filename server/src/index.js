@@ -5,10 +5,8 @@ const cors = require('cors');
 const {Op} = require('sequelize');
 
 const db = require('./db/models');
-const movieRouters = require('./routers/movieRouters');
-const actorRouters = require('./routers/actorRouters');
-const directorRouters = require('./routers/directorRouters');
-const studioRouters = require('./routers/studioRouters');
+const router = require('./routers');
+
 
 const PORT = process.env.PORT || 5000;
 
@@ -17,10 +15,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/api', movieRouters);
-app.use('/api', actorRouters);
-app.use('/api', directorRouters);
-app.use('/api', studioRouters);
+app.use('/api', router);
 
 app.listen(PORT, () => console.log(`Listen on port:${PORT}`));
 
