@@ -2,6 +2,7 @@ const createError = require('http-errors');
 
 const { Movie, sequelize } = require('../db/models');
 
+
 class MovieController {
 
   async getAllMovies(req, res, next) {
@@ -68,7 +69,7 @@ class MovieController {
         });
         if(updateMovie){
           console.log(JSON.stringify(updateMovie, null, 2));
-          res.status(200).json(updateMovie);
+          res.status(200).json(updateMovie); //* updateMovie[1] - ?
         } else{
           next(createError(412, `Movie was not update`));
         }
@@ -81,9 +82,23 @@ class MovieController {
     };
 
   async changeMovie(req, res, next){
+    const t = await sequelize.transaction();
     try {
-      
-      t.commit();
+      const { params: {id}, body } = req;
+      const [rowsCount, [updateMovie]] = await Movie.update(body, {
+        where: {id},
+        raw: true,
+        returning: true,
+        transaction: t
+      });
+      if(rowsCount > 0){
+        res.status(200).json(updateMovie);
+        console.log(JSON.stringify(updateMovie, null, 2));
+        t.commit();
+      } else{
+        next(createError(412, `Movie was not update by patch`));
+        t.rollback();
+      }
     } catch (error) {
       next(error);
       t.rollback();
@@ -94,15 +109,25 @@ class MovieController {
   
 
   async deleteMovie(req, res, next){
+    const t = await sequelize.transaction();
     try {
-      
-      t.commit();
+      const id = req.params.id;
+      const deleteMovie = await Movie.destroy({where: {id}});
+      if(deleteMovie){
+        res.send(res.statusCode);
+        t.commit();
+      } else{
+        next(createError(404, `Movie was not delete`));
+        t.rollback();
+      }
     } catch (error) {
       next(error);
       t.rollback();
       // console.log(error.message);
     }; 
   };
+  //* для пов'язаних таблиць необхідно вказати каскадність
+
 
 };
 

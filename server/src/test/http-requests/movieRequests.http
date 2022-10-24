@@ -26,3 +26,18 @@ content-type: application/json
   "title": "Taxi",
   "release_year": "2000-01-01"
 }
+
+###
+
+PATCH http://localhost:5000/api/movies/53 HTTP/1.1
+content-type: application/json
+
+{
+  "title": "Taxi",
+  "release_year": "2000-01-01"
+}
+
+###
+
+DELETE http://localhost:5000/api/movies/53 HTTP/1.1
+content-type: application/json
